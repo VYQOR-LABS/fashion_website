@@ -1,4 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VYQOR ATELIER
+
+An editorial fashion storefront built with Next.js App Router, TypeScript, Tailwind CSS, Motion and Lucide. Products are static TypeScript data; orders are handled through WhatsApp or the contact form. There is no database, account system or persistent cart.
+
+## Run locally
+
+```bash
+npm install
+cp .env.example .env.local
+npm run dev
+```
+
+Official brand, phone, WhatsApp, Instagram and TikTok details are centralized in `src/lib/config.ts`. Set the business email, hours and Resend email credentials in `.env.local` before launch. The contact API needs `EMAIL_API_KEY`, `BUSINESS_EMAIL`, and a verified `EMAIL_FROM` sender; inquiries are never stored in a database.
+
+## Update the catalogue
+
+Edit `src/lib/products.ts` to add product details, prices, sizes, colours and image URLs. Update `src/lib/config.ts` to replace the brand imagery or official business details.
+
+## Checks
+
+```bash
+npm run lint
+npm run build
+```
+
+The contact policy pages are starter copy and should be reviewed for the business before launch. Customer-note cards on the homepage are explicitly marked sample content and should be replaced with verified feedback.This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
@@ -34,3 +59,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# fashion_website
+# fashion_website
