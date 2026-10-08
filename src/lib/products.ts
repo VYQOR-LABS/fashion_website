@@ -1,4 +1,4 @@
-import { businessConfig, images } from "@/lib/config";
+import { businessConfig } from "@/lib/config";
 
 export type Product = {
   id: string;
@@ -99,8 +99,8 @@ export function getWhatsAppUrl(product: Product, quantity = 1, options: { size?:
 }
 
 export const collectionItems = [
-  { number: "01", title: "Everyday Ease", slug: "everyday-ease", category: "Handbags", text: "Thoughtful pieces for wherever the day takes you.", image: images.categories.Handbags },
-  { number: "02", title: "The Evening Edit", slug: "evening-edit", category: "Dresses", text: "A little occasion, a lot of feeling.", image: images.editorial },
-  { number: "03", title: "Off-Duty, Elevated", slug: "off-duty-elevated", category: "Sneakers", text: "Comfort, with a considered point of view.", image: images.categories.Sneakers },
-  { number: "04", title: "Finishing Touches", slug: "finishing-touches", category: "Accessories", text: "The small details that make it yours.", image: images.categories.Accessories },
+  { number: "01", title: "Everyday Ease", slug: "everyday-ease", category: "Handbags", text: "Thoughtful pieces for wherever the day takes you.", image: "/images/collection-everyday.jpg" },
+  { number: "02", title: "The Evening Edit", slug: "evening-edit", category: "Dresses", text: "A little occasion, a lot of feeling.", image: "/images/collection-evening.jpg" },
+  { number: "03", title: "Off-Duty, Elevated", slug: "off-duty-elevated", category: "Sneakers", text: "Comfort, with a considered point of view.", image: "/images/collection-off-duty.jpg" },
+  { number: "04", title: "Finishing Touches", slug: "finishing-touches", category: "Accessories", text: "The small details that make it yours.", image: "/images/collection-finishing.jpg" },
 ];

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { EmailConfigurationError, sendContactConfirmation, sendContactEmail } from "@/lib/email";
 
 type ContactInquiry = { name: string; email: string; phone?: string; subject: string; message: string };
 
@@ -22,27 +23,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please check the information and try again." }, { status: 400 });
   }
 
-  const apiKey = process.env.EMAIL_API_KEY;
-  const businessEmail = process.env.BUSINESS_EMAIL;
-  const sender = process.env.EMAIL_FROM;
-  if (!apiKey || !businessEmail || !sender) return NextResponse.json({ error: "Email service is not configured." }, { status: 503 });
-
   try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from: sender,
-        to: [businessEmail],
-        reply_to: email,
-        subject: `Website inquiry: ${subject}`,
-        text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\n\n${message}`,
-      }),
-      signal: AbortSignal.timeout(10000),
-    });
-    if (!response.ok) return NextResponse.json({ error: "Unable to send your message." }, { status: 502 });
+    const contact = { name, email, phone, subject, message };
+    await Promise.all([sendContactEmail(contact), sendContactConfirmation(contact)]);
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    if (error instanceof EmailConfigurationError) {
+      return NextResponse.json({ error: "Email service is not configured." }, { status: 503 });
+    }
     return NextResponse.json({ error: "Unable to send your message." }, { status: 502 });
   }
 }
